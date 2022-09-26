@@ -3,7 +3,7 @@ ofImage lifeImg; //original image
 int gridSize = 20; // size of grid
 ofPixels cellPixs; // this generation
 ofPixels cellNxtPixs; //next generation
-int timer = 200; //how long refresh next frame
+int timer = 10; //how long refresh next frame
 bool newTurn; //whether to fresh
 int rowNum = 30; //how many rows
 int colNum = 40; // how many col
@@ -29,7 +29,7 @@ void ofApp::update(){
         newTurn = false;
     }else{
         newTurn = true;
-        timer = 100;
+        timer = 10;
     }
     
     //if timer is up, show next generation
@@ -111,9 +111,14 @@ int ofApp:: checkLiveCells(int col, int row, ofPixels cellPix){
     if (col > 0 && row > 0 && col < colNum && row < colNum){
         for (int y = -1; y < 2; y++){
             for(int x = -1; x < 2; x++){
-                ofColor cellColor = cellPix.getColor(col+x, row+y);
-                if(x != 0 && y != 0 && cellColor == ofColor(255)){
-                    liveCount ++;
+                if(x == 0 && y == 0){
+
+                }
+                else{
+                    ofColor cellColor = cellPix.getColor(col+x, row+y);
+                    if(cellColor == ofColor(255)){
+                        liveCount ++;
+                    }
                 }
             }
         }
